@@ -10,6 +10,7 @@ camera.framerate = 15
 
 while True:
     now = datetime.now()
-    name = now.strftime('%Y%m%d_%H%M%S') + '.jpg' 
-    camera.capture('/home/pi/photos/'+name)
+    name = now.strftime('%Y_%m_%d_%H%M%S') + '.jpg'
+    camera.capture('captured_photos/' + name)
+    print("Captured: ", name)
     sleep(10 * minute)

@@ -6,4 +6,3 @@ camera = PiCamera()
 camera.start_preview()
 sleep(19)
 camera.stop_preview()
-
