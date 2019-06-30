@@ -34,22 +34,23 @@ camera.framerate = 15
 
 aux_time_slept = 0
 while True:
-    for (sensor, channel in adc_channels.items()):
-        print('{} Value: {}'.format(key, channel.value))
-        print('{} Voltage: {}V'.format(key, str(channel.voltage)))
+    print("\n------- Sensor Values -------")
+    for sensor, channel in adc_channels.items():
+        print('{} Value: {}'.format(sensor, channel.value))
+        print('{} Voltage: {}V'.format(sensor, str(channel.voltage)))
 
     try:
         temperature_c = dhtDevice.temperature
         humidity = dhtDevice.humidity
-        print("Temp: {:.1f} F / {:.1f} C    Humidity: {}% "
-              .format(temperature_f, temperature_c, humidity))
+        print("Temperature: {:.1f} C    Humidity: {}% "
+              .format(temperature_c, humidity))
     except RuntimeError as error:
         print(error.args[0])
 
     sleep(SLEEP_SECONDS_SENSORS)
     aux_time_slept+= SLEEP_SECONDS_SENSORS
 
-    if (aux_time_slept>=SLEEP_SECONDS_CAMERA):
+    if aux_time_slept>=SLEEP_SECONDS_CAMERA:
         now = datetime.now()
         fn_photo = now.strftime('%Y_%m_%d_%H%M%S') + '.jpg'
         camera.capture('~/captured_photos/' + fn_photo)
