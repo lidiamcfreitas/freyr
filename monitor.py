@@ -10,8 +10,7 @@ from datetime import datetime
 
 MINUTE_IN_SECONDS = 60
 SLEEP_SECONDS_SENSORS = 5
-SLEEP_SECONDS_CAMERA = 10 * MINUTE_IN_SECONDS
-
+SLEEP_SECONDS_CAMERA = 1 * MINUTE_IN_SECONDS
 
 # create the spi bus
 spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -48,11 +47,11 @@ while True:
         print(error.args[0])
 
     sleep(SLEEP_SECONDS_SENSORS)
-    aux_time_slept+= SLEEP_SECONDS_SENSORS
+    aux_time_slept += SLEEP_SECONDS_SENSORS
 
-    if aux_time_slept>=SLEEP_SECONDS_CAMERA:
+    if aux_time_slept >= SLEEP_SECONDS_CAMERA:
         now = datetime.now()
         fn_photo = now.strftime('%Y_%m_%d_%H%M%S') + '.jpg'
         camera.capture('~/captured_photos/' + fn_photo)
-        print("Captured: ", name)
-        aux_time_slept=0 # reset
+        print("Captured: ", fn_photo)
+        aux_time_slept = 0  # reset
