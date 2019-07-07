@@ -10,7 +10,7 @@ from datetime import datetime
 
 MINUTE_IN_SECONDS = 60
 SLEEP_SECONDS_SENSORS = 5
-SLEEP_SECONDS_CAMERA = 1 * MINUTE_IN_SECONDS
+SLEEP_SECONDS_CAMERA = 30 * MINUTE_IN_SECONDS
 
 # create the spi bus
 spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -31,20 +31,23 @@ camera = PiCamera()
 camera.resolution = (2592, 1944)
 camera.framerate = 15
 
-aux_time_slept = 0
+aux_time_slept = SLEEP_SECONDS_CAMERA
 while True:
-    print("\n------- Sensor Values -------")
     for sensor, channel in adc_channels.items():
-        print('{} Value: {}'.format(sensor, channel.value))
-        print('{} Voltage: {}V'.format(sensor, str(channel.voltage)))
+        now = datetime.now()
+        print('{} - {} Value: {} - Voltage: {:.3f}V'.format(
+            now.strftime('%Y_%m_%d_%H%M%S'), sensor, channel.value, channel.voltage))
 
-    try:
-        temperature_c = dhtDevice.temperature
-        humidity = dhtDevice.humidity
-        print("Temperature: {:.1f} C    Humidity: {}% "
-              .format(temperature_c, humidity))
-    except RuntimeError as error:
-        print(error.args[0])
+    for _ in range(5):
+        try:
+            now = datetime.now()
+            temperature_c = dhtDevice.temperature
+            humidity = dhtDevice.humidity
+            print("{} - Temperature: {:.1f}C    Humidity: {}% ".format(
+                now.strftime('%Y_%m_%d_%H%M%S'), temperature_c, humidity))
+            break
+        except RuntimeError as error:
+            pass
 
     sleep(SLEEP_SECONDS_SENSORS)
     aux_time_slept += SLEEP_SECONDS_SENSORS
@@ -52,6 +55,6 @@ while True:
     if aux_time_slept >= SLEEP_SECONDS_CAMERA:
         now = datetime.now()
         fn_photo = now.strftime('%Y_%m_%d_%H%M%S') + '.jpg'
-        camera.capture('~/captured_photos/' + fn_photo)
+        camera.capture('/home/pi/captured_photos/' + fn_photo)
         print("Captured: ", fn_photo)
         aux_time_slept = 0  # reset
