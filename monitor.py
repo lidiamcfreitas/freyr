@@ -22,9 +22,9 @@ cs = digitalio.DigitalInOut(board.D5)
 mcp = MCP.MCP3008(spi, cs)
 
 adc_channels = {
-    'water_level': AnalogIn(mcp, MCP.P0),
+    # 'water_level': AnalogIn(mcp, MCP.P0),
     'photoresistor': AnalogIn(mcp, MCP.P1),
-    'soil_moisture': AnalogIn(mcp, MCP.P2)
+    # 'soil_moisture': AnalogIn(mcp, MCP.P2)
 }
 dhtDevice = adafruit_dht.DHT11(board.D18)
 camera = PiCamera()
@@ -36,7 +36,7 @@ while True:
     for sensor, channel in adc_channels.items():
         now = datetime.now()
         print('{} - {} Value: {} - Voltage: {:.3f}V'.format(
-            now.strftime('%Y_%m_%d_%H%M%S'), sensor, channel.value, channel.voltage))
+            now.strftime('%Y_%m_%d_%H%M%S'), sensor, channel.value, channel.voltage), flush=True)
 
     for _ in range(5):
         try:
@@ -44,7 +44,7 @@ while True:
             temperature_c = dhtDevice.temperature
             humidity = dhtDevice.humidity
             print("{} - Temperature: {:.1f}C    Humidity: {}% ".format(
-                now.strftime('%Y_%m_%d_%H%M%S'), temperature_c, humidity))
+                now.strftime('%Y_%m_%d_%H%M%S'), temperature_c, humidity), flush=True)
             break
         except RuntimeError as error:
             pass
@@ -56,5 +56,5 @@ while True:
         now = datetime.now()
         fn_photo = now.strftime('%Y_%m_%d_%H%M%S') + '.jpg'
         camera.capture('/home/pi/captured_photos/' + fn_photo)
-        print("Captured: ", fn_photo)
+        print("Captured: ", fn_photo, flush=True)
         aux_time_slept = 0  # reset
