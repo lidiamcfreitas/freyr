@@ -3,7 +3,6 @@ from picamera import PiCamera
 from datetime import datetime
 import argparse
 
-
 my_parser = argparse.ArgumentParser()
 my_parser.add_argument('-s', '--sleep_minutes', action='store', type=int, default=30)
 my_parser.add_argument('--id', action='store', type=str, default="camera")
