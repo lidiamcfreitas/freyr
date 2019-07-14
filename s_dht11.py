@@ -50,7 +50,7 @@ while True:
 
             print("{} - Temperature: {:.1f}C    Humidity: {}% ".format(
                 now.strftime('%Y_%m_%d_%H%M%S'), temperature_c, humidity), flush=True)
-            to_write = "{}, {:.1}, {}\n".format(now.strftime('%Y_%m_%d_%H%M%S'), temperature_c, humidity)
+            to_write = "{}, {:.1f}, {}\n".format(now.strftime('%Y_%m_%d_%H%M%S'), temperature_c, humidity)
             monitor.out_file.write(to_write)
             break
         except RuntimeError as error:
