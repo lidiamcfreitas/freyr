@@ -57,5 +57,7 @@ if __name__ == "__main__":
             currValve.stop()
         else:
             print(currValve)
+
+        signal.pause()
     except Exception:
         print(currValve)
