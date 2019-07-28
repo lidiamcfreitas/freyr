@@ -2,6 +2,7 @@ from flask import Flask
 
 from api import auth, api
 from api.extensions import db, jwt, migrate
+from flask_cors import CORS
 
 
 def create_app(testing=False, cli=False):
@@ -15,6 +16,9 @@ def create_app(testing=False, cli=False):
 
     configure_extensions(app, cli)
     register_blueprints(app)
+
+    # enable CORS
+    CORS(app, resources={r'/*': {'origins': '*'}})
 
     return app
 
