@@ -1,8 +1,24 @@
 # Freyr
 Automatic plant watering system
 
-How to clone the repository:
-- git clone --recurse-submodules <git-repository-url>
+
+# How to run the code
+1. clone the repo
+
+```git clone --recurse-submodules <git-repository-url>```
+2. install conda environment 
+
+```conda create --name freyr --file spec-file.txt```
+3. activate the environment
+
+```source activate freyr```
+4. Run the api
+
+```cd api; api run```
+5. Run the frontend
+
+```cd client; npm run serve```
+
 
 # How to collaborate
 1. Document everything through **issues**. These need to include a definition of done: the acceptance critera for it to be  done. Newly created issues will be added to the backlog
