@@ -6,18 +6,16 @@ Automatic plant watering system
 1. clone the repo
 
 ```git clone --recurse-submodules <git-repository-url>```
-2. install conda environment 
 
-```conda create --name freyr --file spec-file.txt```
-3. activate the environment
+2. create virtual environment and activate it using the requirements.txt
 
-```source activate freyr```
-4. Run the api
+4. Run the backend api
 
 ```cd api; api run```
+
 5. Run the frontend
 
-```cd client; npm run serve```
+```cd client; npm install; npm run serve```
 
 
 # How to collaborate
