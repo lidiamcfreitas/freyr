@@ -3,15 +3,15 @@ version: '3'
 
 services:
   web:
-    image: api
+    image: rpi_api
     build: .
-    command: api run -h 0.0.0.0
+    command: rpi_api run -h 0.0.0.0
     env_file:
       - ./.flaskenv
     environment:
-      - DATABASE_URI=sqlite:////db/api.db
+      - DATABASE_URI=sqlite:////db/rpi_api.db
     volumes:
-      - ./api:/code/api
+      - ./rpi_api:/code/rpi_api
       - ./db/:/db/
     ports:
       - "5000:5000"

@@ -4,7 +4,7 @@ __version__ = '0.1'
 
 
 setup(
-    name='api',
+    name='rpi_api',
     version=__version__,
     packages=find_packages(exclude=['tests']),
     install_requires=[
@@ -20,7 +20,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'api = api.manage:cli'
+            'rpi_api = rpi_api.manage:cli'
         ]
     }
 )

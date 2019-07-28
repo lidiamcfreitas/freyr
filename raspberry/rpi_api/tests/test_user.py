@@ -1,7 +1,7 @@
 import factory
 from pytest_factoryboy import register
 
-from api.models import User
+from rpi_api.models import User
 
 
 @register

@@ -1,4 +1,4 @@
-from api.extensions import db, pwd_context
+from rpi_api.extensions import db, pwd_context
 
 
 class User(db.Model):

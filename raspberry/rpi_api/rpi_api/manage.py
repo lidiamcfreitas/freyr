@@ -1,14 +1,14 @@
 import click
 from flask.cli import FlaskGroup
 
-from api.app import create_app
+from rpi_api.app import create_app
 
 
-def create_api(info):
+def create_rpi_api(info):
     return create_app(cli=True)
 
 
-@click.group(cls=FlaskGroup, create_app=create_api)
+@click.group(cls=FlaskGroup, create_app=create_rpi_api)
 def cli():
     """Main entry point"""
 
@@ -18,8 +18,8 @@ def init():
     """Init application, create database tables
     and create a new user named admin with password admin
     """
-    from api.extensions import db
-    from api.models import User
+    from rpi_api.extensions import db
+    from rpi_api.models import User
     click.echo("create database")
     db.create_all()
     click.echo("done")

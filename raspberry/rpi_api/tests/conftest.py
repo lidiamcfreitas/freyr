@@ -1,9 +1,9 @@
 import json
 import pytest
 
-from api.models import User
-from api.app import create_app
-from api.extensions import db as _db
+from rpi_api.models import User
+from rpi_api.app import create_app
+from rpi_api.extensions import db as _db
 
 
 @pytest.fixture

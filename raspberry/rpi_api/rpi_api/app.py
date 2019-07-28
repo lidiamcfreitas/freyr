@@ -1,14 +1,14 @@
 from flask import Flask
 
-from api import auth, api
-from api.extensions import db, jwt, migrate
+from rpi_api import actuators
+from rpi_api.extensions import db, jwt, migrate
 
 
 def create_app(testing=False, cli=False):
     """Application factory, used to create application
     """
-    app = Flask('api')
-    app.config.from_object('api.config')
+    app = Flask('rpi_api')
+    app.config.from_object('rpi_api.config')
 
     if testing is True:
         app.config['TESTING'] = True
@@ -32,5 +32,4 @@ def configure_extensions(app, cli):
 def register_blueprints(app):
     """register all blueprints for application
     """
-    app.register_blueprint(auth.views.blueprint)
-    app.register_blueprint(api.views.blueprint)
+    app.register_blueprint(actuators.views.blueprint)
