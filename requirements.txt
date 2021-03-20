@@ -48,7 +48,7 @@ idna==2.8
 importlib-metadata==0.18
 isort==4.3.4
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.3
 jinja2-time==0.2.0
 Mako==1.0.14
 MarkupSafe==1.1.1
