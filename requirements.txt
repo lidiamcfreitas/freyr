@@ -2,7 +2,7 @@ alembic==1.0.11
 aniso8601==7.0.0
 -e git+https://github.com/lidiamcfreitas/freyr.git@8d618778713acf0383abd8d7c12e76e89a58786e#egg=api&subdirectory=api
 appdirs==1.4.3
-arrow==0.14.2
+arrow==0.15.1
 atomicwrites==1.3.0
 attrs==19.1.0
 bcrypt==3.1.7
