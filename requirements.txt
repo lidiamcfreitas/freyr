@@ -50,7 +50,7 @@ isort==4.3.4
 itsdangerous==1.1.0
 Jinja2==2.10.1
 jinja2-time==0.2.0
-Mako==1.0.14
+Mako==1.2.2
 MarkupSafe==1.1.1
 marshmallow==2.19.5
 marshmallow-sqlalchemy==0.17.0
